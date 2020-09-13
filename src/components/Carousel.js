@@ -78,12 +78,16 @@ export default class Carousel extends React.Component {
   componentDidMount() {
     this.changeImage()
   }
+  componentDidUpdate() {
+    this.changeImage()
+  }
   componentWillUnmount() {
     window.clearInterval(this.timer);
   }
   render() {
     const { images } = this.props; 
-        
+    // console.log({images});
+    
     return (
       <div className='slider-wrapper'>
         <div 
@@ -91,7 +95,7 @@ export default class Carousel extends React.Component {
           onMouseOver={this.pauseImage}  
           onMouseOut={this.changeImage}
         >
-          {images.length
+          {images.length && images[this.state.index]?.url
             ? <a 
                 href={images[this.state.index].url} 
                 onClick={(e) => {

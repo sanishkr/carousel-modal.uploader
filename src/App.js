@@ -38,7 +38,7 @@ export default function App() {
           img: URL.createObjectURL(file),
           url: file.name
         })
-        setImages(images => images.concat(imgs))
+        setImages([...images, ...imgs])
         // formData.append(i, file)
       }
     })
@@ -49,6 +49,7 @@ export default function App() {
     setErrors(errs)
 
   }
+
   return (
     <div className="container">
       <Carousel
@@ -60,11 +61,11 @@ export default function App() {
       {
         errors.map((err, i) => <span key={i+1} className="error">{err}</span>)
       }
-      <label for="multi">Add one or more images to carousel (max 3 at a time)</label>
+      <label htmlFor="multi">Add one or more images to carousel (max 3 at a time)</label>
       <input type='file' id='multi' onChange={mutiFileHandler} multiple />
     
-      <br/>
-      <button onClick={() => setImages([])}>Remove all images from carousel</button>
+      {/* <br/>
+      <button onClick={() => setImages([])}>Remove all images from carousel</button> */}
     </div>
   );
 }
